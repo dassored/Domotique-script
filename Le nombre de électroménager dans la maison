@@ -1,0 +1,29 @@
+class maison:
+
+    def __init__ (self):
+        self.objet = []
+
+    def ajouter_objet ( self, mon_objet, alimente_electricite):
+        sef.objets.append ({"nom": nom_objet, "alimente_electricite": alimente_electricite})
+
+        def compter_objets_electriques(self):
+            nb_objets_electriques = sum (t["alimente_electricite"] for objet in self.objets)
+            return nb_objets_electriques
+def main():
+    maison = maison ()
+
+
+    # Ajoutez des objets avec leurs informations (nom, alimenté par électricité ou non)
+    maison.ajouter_objet("Réfrigérateur", True)
+    maison.ajouter_objet("Télévision", True)
+    maison.ajouter_objet("Lampe de table", True)
+    maison.ajouter_objet("Ventilateur", True)
+    maison.ajouter_objet("Four", True)
+    maison.ajouter_objet("Table", False)
+    maison.ajouter_objet("Chaise", False)
+
+    nb_objets_electriques = maison.compter_objets_electriques()
+    print (f"Le nombre d'objets alimentés en électricité dans la maison est : {nb_objets_electriques}")
+
+    if __name__ =="__main__":
+        main()
