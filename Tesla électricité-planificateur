@@ -1,0 +1,51 @@
+import datetime
+
+# Simuler les tarifs d'électricité pour différentes heures de la journée (en dollars par kWh)
+tarifs_electricite = {
+    "00:00": 0.10,
+    "01:00": 0.09,
+    "02:00": 0.09,
+    # ... Ajouter les tarifs pour chaque heure de la journée ...
+    "22:00": 0.12,
+    "23:00": 0.11,
+}
+
+# Simuler la disponibilité d'énergie renouvelable pour différentes heures de la journée (en pourcentage)
+energie_renouvelable = {
+    "00:00": 50,
+    "01:00": 60,
+    "02:00": 65,
+    # ... Ajouter les pourcentages pour chaque heure de la journée ...
+    "22:00": 55,
+    "23:00": 52,
+}
+
+# Heure de départ souhaitée (à régler par l'utilisateur)
+heure_depart_souhaitee = "08:00"
+
+# Calculer l'heure de début de charge optimale en fonction des tarifs et de l'énergie renouvelable
+heure_optimale_debut_charge = None
+cout_optimal = float("inf")
+
+for heure, tarif in tarifs_electricite.items():
+    heure_depart = datetime.datetime.strptime(heure_depart_souhaitee, "%H:%M")
+    heure_charge = datetime.datetime.strptime(heure, "%H:%M")
+
+    # Calculer le temps de charge nécessaire en heures
+    temps_charge = (heure_charge - heure_depart).seconds / 3600
+
+    # Calculer le coût de charge en fonction du tarif d'électricité
+    cout_charge = temps_charge * tarif
+
+    # Vérifier si l'énergie renouvelable est suffisamment disponible pour la charge
+    if energie_renouvelable[heure] >= 50:  # Pourcentage minimal acceptable d'énergie renouvelable (50 %)
+        # Choisir l'heure de début de charge qui minimise le coût
+        if cout_charge < cout_optimal:
+            cout_optimal = cout_charge
+            heure_optimale_debut_charge = heure
+
+if heure_optimale_debut_charge:
+    print("Heure de début de charge optimale :", heure_optimale_debut_charge)
+    print("Coût optimal de charge :", cout_optimal)
+else:
+    print("Aucune heure de charge optimale trouvée avec une disponibilité suffisante d'énergie renouvelable.")
