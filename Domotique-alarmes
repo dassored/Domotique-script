@@ -1,0 +1,41 @@
+class Alarme:
+    def __init__(self):
+        self.active = False
+
+    def activer(self):
+        if not self.active:
+            print("Alarme activée.")
+            self.active = True
+        else:
+            print("L'alarme est déjà activée.")
+
+    def desactiver(self):
+        if self.active:
+            print("Alarme désactivée.")
+            self.active = False
+        else:
+            print("L'alarme est déjà désactivée.")
+
+
+def main():
+    alarme = Alarme()
+    
+    while True:
+        print("1. Activer l'alarme")
+        print("2. Désactiver l'alarme")
+        print("3. Quitter")
+        
+        choix = input("Entrez votre choix (1, 2 ou 3) : ")
+        
+        if choix == '1':
+            alarme.activer()
+        elif choix == '2':
+            alarme.desactiver()
+        elif choix == '3':
+            print("Au revoir !")
+            break
+        else:
+            print("Choix invalide. Veuillez choisir parmi les options disponibles.")
+
+if __name__ == "__main__":
+    main()
