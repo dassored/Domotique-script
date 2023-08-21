@@ -1,0 +1,32 @@
+import RPi.GPIO as GPIO
+import time
+
+# Configurer les broches GPIO pour les fenêtres (exemple)
+PIN_FENETRE_1 = 17
+PIN_FENETRE_2 = 18
+
+# Initialiser la bibliothèque GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(PIN_FENETRE_1, GPIO.OUT)
+GPIO.setup(PIN_FENETRE_2, GPIO.OUT)
+
+def ouvrir_fenetres():
+    GPIO.output(PIN_FENETRE_1, GPIO.HIGH)
+    GPIO.output(PIN_FENETRE_2, GPIO.HIGH)
+    print("Fenêtres ouvertes")
+
+def fermer_fenetres():
+    GPIO.output(PIN_FENETRE_1, GPIO.LOW)
+    GPIO.output(PIN_FENETRE_2, GPIO.LOW)
+    print("Fenêtres fermées")
+
+try:
+    while True:
+        ouvrir_fenetres()
+        time.sleep(2 * 60 * 60)  # Attendre 2 heures
+
+        fermer_fenetres()
+        time.sleep(2 * 60 * 60)  # Attendre 2 heures
+
+except KeyboardInterrupt:
+    GPIO.cleanup()
